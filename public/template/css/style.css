@@ -1,0 +1,195 @@
+/* Add your custom styles here */
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+
+body {
+    background-color: #f8f9fa;
+    overflow-y: scroll;  
+    font-family: 'Poppins', sans-serif;   
+    margin: auto;
+    padding: 0;
+    padding-top: 30px;
+}
+
+/* Custom styling for tabs with underline effect */
+.nav-tabs {
+    background-color: #f8f9fa; 
+    /* border-bottom: 1px solid #dee2e6; */
+    border-bottom: 2px solid #bcbdbe;
+
+}
+
+.nav-tabs .nav-item {
+    margin-bottom: 0;
+}
+
+.nav-tabs .nav-link {
+    color: #495057; 
+    background-color: #f8f9fa; /* Background color for inactive tabs */
+    border: none; /* Remove border for inactive tabs */
+    border-radius: 0; /* Remove border-radius */
+    position: relative;
+}
+
+.nav-tabs .nav-link.active::after {
+    content: "";
+    position: absolute;
+    bottom: -1px; /* Adjust this value to control the distance from the text */
+    left: 0;
+    width: 100%;
+    height: 2px; /* Adjust this value to control the underline thickness */
+    background-color: #dc3545; 
+}
+
+.container {
+    max-width: 100%;
+    margin: auto;
+}
+
+#logoAndText, .tab-content {
+    margin-top: 10px;
+}
+
+.additional-style {
+    margin-left: 20px; 
+    margin-right: 20px;
+    margin-bottom: 80px;
+}
+
+.content-netwatch {
+    margin-bottom: 80px;
+}
+
+.connect-btn,
+.save-btn {
+    width: 49%;
+}
+
+
+
+/* Disconnect Button Style */
+.disconnect-wrapper {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 999; /* Menentukan urutan lapisan agar di atas elemen-elemen lain jika perlu */
+}
+
+.disconnect-btn {
+    background-color: red; /* Warna latar merah */
+    color: white; /* Warna teks putih */
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.disconnect-btn:hover {
+    background-color: darkred; /* Warna latar merah tua saat dihover */
+}
+
+
+.spinner-wrapper {
+    background-color: #f8fafc;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s;
+    display: none;
+}
+
+.spinner-border {
+    height: 60px;
+    width: 60px;
+}
+
+.spinner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.connecting-text {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+
+div.online-indicator {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+    background-color: #0fcc45;
+    border-radius: 50%;
+    position: relative;
+}
+
+span.blink {
+    display: block;
+    width: 15px;
+    height: 15px;
+    background-color: #0fcc45;
+    opacity: 0.7;
+    border-radius: 50%;
+    animation: blink 1s linear infinite;
+}
+
+/* Animations */
+@keyframes blink {
+    100% { transform: scale(2, 2); 
+            opacity: 0;
+          }
+  }
+
+
+div.offline-indicator {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+    background-color: #ff0000; /* Warna merah untuk offline */
+    border-radius: 50%;
+    position: relative;
+}
+
+div.offline-indicator span.blink {
+    display: block;
+    width: 15px;
+    height: 15px;
+    background-color: #ff0000; /* Warna merah untuk offline */
+    opacity: 0.7;
+    border-radius: 50%;
+    animation: blink 1s linear infinite;
+}
+
+/* Animations */
+@keyframes blink {
+    100% {
+        transform: scale(2, 2);
+        opacity: 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+
