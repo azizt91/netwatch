@@ -14,7 +14,7 @@
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "false",
-        "APP_URL": "",
+        "APP_URL": "https://netwatch-gilt.vercel.app/",
         "APP_KEY": "base64:IoXx7RA4e8ZBAE+KZ32V9sUbILwy5CLWjIPGMw9i8hQ=",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
