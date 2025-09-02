@@ -3,59 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\RouterosAPI;
+use App\Services\RouterosService;
 
 class NetwatchController extends Controller
 {
+    private RouterosService $routeros;
+
+    public function __construct(RouterosService $routeros)
+    {
+        $this->routeros = $routeros;
+    }
+
     public function netwatch()
     {
         $host = session()->get('host');
         $username = session()->get('username');
         $password = session()->get('password');
-        $API = new RouterosAPI();
-        $API->debug = false;
+        if ($this->routeros->connect($host, $username, $password)) {
 
-        if ($API->connect($host, $username, $password)) {
-
-            $netwatch = $API->comm('/tool/netwatch/print');
-            $hotspotactive = $API->comm('/ip/hotspot/active/print');
-            $resource = $API->comm('/system/resource/print');
-            $secret = $API->comm('/ppp/secret/print');
-            $secretactive = $API->comm('/ppp/active/print');
-            $interface = $API->comm('/interface/ethernet/print');
-            $routerboard = $API->comm('/system/routerboard/print');
-            $identity = $API->comm('/system/identity/print');
-
-            $statusUpCount = 0;
-            $statusDownCount = 0;
-
-            // Hitung jumlah status up dan down
-            foreach ($netwatch as $data) {
-                if ($data['status'] == 'up') {
-                    $statusUpCount++;
-                } elseif ($data['status'] == 'down') {
-                    $statusDownCount++;
-                }
-            }
-
-            $data = [
-                'netwatchData' => $netwatch,
-                'totalsecret' => count($secret),
-                'totalhotspot' => count($hotspotactive),
-                'hotspotactive' => count($hotspotactive),
-                'secretactive' => count($secretactive),
-                'cpu' => $resource[0]['cpu-load'],
-                'uptime' => $resource[0]['uptime'],
-                'version' => $resource[0]['version'],
-                'interface' => $interface,
-                'boardname' => $resource[0]['board-name'],
-                'freememory' => $resource[0]['free-memory'],
-                'freehdd' => $resource[0]['free-hdd-space'],
-                'model' => $routerboard[0]['model'],
-                'identity' => $identity[0]['name'],
-                'statusUpCount' => $statusUpCount,
-                'statusDownCount' => $statusDownCount,
-            ];
+            $data = $this->routeros->fetchDashboardData();
 
             // Tampilkan halaman dengan data netwatch
             return view('netwatch', $data);
@@ -106,6 +72,9 @@ class NetwatchController extends Controller
 
     public function disconnect(Request $request)
     {
+        // Tutup koneksi ke RouterOS jika masih terbuka
+        $this->routeros->disconnect();
+
         // Hapus semua data terkait login dari session
         $request->session()->forget(['host', 'username', 'password', 'keep_password']);
 
