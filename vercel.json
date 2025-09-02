@@ -2,7 +2,7 @@
     "version": 2,
     "framework": null,
     "functions": {
-        "api/index.php": { "runtime": "vercel-php@1.0.0" }
+        "api/index.php": { "runtime": "vercel-php@0.6.0" }
     },
     "routes": [
         { "src": "/build/(.*)", "dest": "/public/build/" },
@@ -14,7 +14,7 @@
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "false",
-        "APP_URL": "https://pos-app-ten-eta.vercel.app/",
+        "APP_URL": "",
         "APP_KEY": "base64:IoXx7RA4e8ZBAE+KZ32V9sUbILwy5CLWjIPGMw9i8hQ=",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
@@ -24,11 +24,6 @@
         "VIEW_COMPILED_PATH": "/tmp",
         "CACHE_DRIVER": "array",
         "LOG_CHANNEL": "stderr",
-        "SESSION_DRIVER": "cookie",
-        "DB_CONNECTION": "",
-        "DB_HOST": "",
-        "DB_PORT": "",
-        "DB_DATABASE": "",
-        "DB_USERNAME": ""
+        "SESSION_DRIVER": "cookie"
     }
 }
